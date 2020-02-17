@@ -30,7 +30,10 @@ defmodule HighRoller.MixProject do
   defp package do
     [
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/NateBarnes/high_roller"}
+      links: %{
+        "GitHub" => "https://github.com/NateBarnes/high_roller",
+        "Docs" => "https://hexdocs.pm/high_roller/0.1.0"
+      }
     ]
   end
 end
