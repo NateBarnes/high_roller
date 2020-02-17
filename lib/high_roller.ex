@@ -1,20 +1,15 @@
 defmodule HighRoller do
   @moduledoc """
-  Documentation for HighRoller.
+  Documentation for main HighRoller module
   """
 
-  @doc """
-  Rolls dice via a method.
+  def roll_with_options(num_of_dice, sides, options) do
+    roll(num_of_dice, sides)
+    |> keep(options)
+  end
 
-  ## Examples
-
-      iex> HighRoller.roll(1, 1)
-      [1]
-
-  """
-  def roll(num_of_dice, sides, current_result \\ [])
-  def roll(num_of_dice, _sides, current_result) when num_of_dice == 0, do: current_result
-  def roll(num_of_dice, sides, current_result) do
-    roll(num_of_dice - 1, sides, [Enum.random(1..sides) | current_result])
+  defp keep(results, kh: number_to_keep) do
+    Enum.sort(results, &(&1 >= &2))
+    |> Enum.take(number_to_keep)
   end
 end
