@@ -1,4 +1,5 @@
-defmodule HighRoller.Random do
+defmodule HighRoller.Dice do
+  @behaviour HighRoller.RandomGenerator
   @moduledoc """
   Documentation for HighRoller.Random module. This is where all the functions are that have results that are inherently random.
   """
@@ -8,7 +9,7 @@ defmodule HighRoller.Random do
 
   ## Examples
 
-      iex> HighRoller.Random.roll(1, 1)
+      iex> HighRoller.Dice.roll(1, 1)
       [1]
 
   """
