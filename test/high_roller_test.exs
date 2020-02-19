@@ -18,7 +18,11 @@ defmodule HighRollerTest do
            [2, 5, 3, 4, 6]
          end)
 
-      assert HighRoller.roll_with_options(5, 6, kl: 2) == [2, 3]
+      assert HighRoller.roll_with_options(5, 6, invalid_option: 2) == [2, 5, 3, 4, 6]
+    end
+
+    test "it should return the results when given an invalid option" do
+
     end
   end
 end
