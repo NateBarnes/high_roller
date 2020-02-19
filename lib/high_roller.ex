@@ -19,8 +19,6 @@ defmodule HighRoller do
     |> keep(options)
   end
 
-  defp keep(results, kh: number_to_keep) do
-    Enum.sort(results, &(&1 >= &2))
-    |> Enum.take(number_to_keep)
-  end
+  defp keep(results, kh: number_to_keep), do: Enum.sort(results, &(&1 >= &2)) |> Enum.take(number_to_keep)
+  defp keep(results, kl: number_to_keep), do: Enum.sort(results) |> Enum.take(number_to_keep)
 end
