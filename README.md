@@ -1,4 +1,4 @@
-# HighRoller
+# HighRoller [![Build Status](https://travis-ci.org/NateBarnes/high_roller.svg?branch=master)](https://travis-ci.org/NateBarnes/high_roller) [![Hex Version](https://img.shields.io/hexpm/v/high_roller.svg)](https://hex.pm/packages/high_roller)
 
 Simple dice roller built in Elixir
 
