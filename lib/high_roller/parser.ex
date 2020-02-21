@@ -3,6 +3,15 @@ defmodule HighRoller.Parser do
   Documentation for the Parser module. This module contains all the code for parsing strings and turning them into the results of dice rolls.
   """
 
+  @doc """
+  Parses a roll string into results.
+
+  ## Examples
+
+      iex> HighRoller.Parser.parse("3d1")
+      3
+
+  """
   def parse(roll_string) do
     roll_string
     |> List.wrap()
