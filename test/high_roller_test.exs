@@ -5,7 +5,7 @@ defmodule HighRollerTest do
   describe "When rolling dice with options" do
     test "it should keep the highest dice when asked" do
       HighRoller.RandomMock
-      |> stub(:roll, fn _, _ ->
+      |> stub(:roll, fn 5, 6 ->
            [2, 5, 3, 4, 6]
          end)
 
@@ -14,7 +14,7 @@ defmodule HighRollerTest do
 
     test "it should keep the lowest dice when asked" do
       HighRoller.RandomMock
-      |> stub(:roll, fn _, _ ->
+      |> stub(:roll, fn 5, 6 ->
            [2, 5, 3, 4, 6]
          end)
 
@@ -23,7 +23,7 @@ defmodule HighRollerTest do
 
     test "it should dorp the lowest dice when asked" do
       HighRoller.RandomMock
-      |> stub(:roll, fn _, _ ->
+      |> stub(:roll, fn 5, 6 ->
            [2, 5, 3, 4, 6]
          end)
 
@@ -32,7 +32,7 @@ defmodule HighRollerTest do
 
     test "it should return the results when given an invalid option" do
       HighRoller.RandomMock
-      |> stub(:roll, fn _, _ ->
+      |> stub(:roll, fn 5, 6 ->
            [2, 5, 3, 4, 6]
          end)
 

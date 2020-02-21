@@ -5,7 +5,7 @@ defmodule HighRoller.ParserTest do
   describe "when parsing dice rolls" do
     test "it should roll specific dice" do
       HighRoller.RandomMock
-      |> stub(:roll, fn _, _ ->
+      |> stub(:roll, fn 3, 20 ->
            [17, 4, 11]
          end)
 
