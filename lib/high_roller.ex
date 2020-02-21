@@ -15,12 +15,13 @@ defmodule HighRoller do
 
   """
   def roll_with_options(num_of_dice, sides, options) do
-    @random_generator.roll(num_of_dice, sides)
+    num_of_dice
+    |> @random_generator.roll(sides)
     |> subset(options)
   end
 
-  defp subset(results, kh: number_to_keep), do: Enum.sort(results, &(&1 >= &2)) |> Enum.take(number_to_keep)
-  defp subset(results, kl: number_to_keep), do: Enum.sort(results) |> Enum.take(number_to_keep)
-  defp subset(results, dl: number_to_drop), do: Enum.sort(results) |> Enum.drop(number_to_drop)
+  defp subset(results, kh: number_to_keep), do: results |> Enum.sort(&(&1 >= &2)) |> Enum.take(number_to_keep)
+  defp subset(results, kl: number_to_keep), do: results |> Enum.sort() |> Enum.take(number_to_keep)
+  defp subset(results, dl: number_to_drop), do: results |> Enum.sort() |> Enum.drop(number_to_drop)
   defp subset(results, _), do: results
 end

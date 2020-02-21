@@ -25,6 +25,7 @@ defmodule HighRoller.MixProject do
   defp deps do
     [
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:credo, "~> 1.2", only: [:dev, :test], runtime: false},
       {:mox, "~> 0.5", only: :test}
     ]
   end
