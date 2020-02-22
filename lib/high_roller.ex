@@ -21,10 +21,10 @@ defmodule HighRoller do
     |> subset(options)
   end
 
-  defp subset(results, k: number_to_keep), do: results |> Enum.sort(&(&1 >= &2)) |> Enum.take(number_to_keep)
+  defp subset(results, k: number_to_keep),  do: results |> Enum.sort(&(&1 >= &2)) |> Enum.take(number_to_keep)
   defp subset(results, kh: number_to_keep), do: results |> Enum.sort(&(&1 >= &2)) |> Enum.take(number_to_keep)
   defp subset(results, kl: number_to_keep), do: results |> Enum.sort() |> Enum.take(number_to_keep)
-  defp subset(results, d: number_to_drop), do: results |> Enum.sort() |> Enum.drop(number_to_drop)
+  defp subset(results, d: number_to_drop),  do: results |> Enum.sort() |> Enum.drop(number_to_drop)
   defp subset(results, dl: number_to_drop), do: results |> Enum.sort() |> Enum.drop(number_to_drop)
   defp subset(results, dh: number_to_drop), do: results |> Enum.sort() |> Enum.drop(number_to_drop * -1)
   defp subset(results, _), do: results
