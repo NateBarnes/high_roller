@@ -10,6 +10,7 @@ defmodule HighRollerTest do
          end)
 
       assert HighRoller.roll_with_options(5, 6, kh: 2) == [6, 5]
+      assert HighRoller.roll_with_options(5, 6, k: 1) == [6]
     end
 
     test "it should keep the lowest dice" do
@@ -28,6 +29,7 @@ defmodule HighRollerTest do
          end)
 
       assert HighRoller.roll_with_options(5, 6, dl: 2) == [4, 5, 6]
+      assert HighRoller.roll_with_options(5, 6, d: 1) == [3, 4, 5, 6]
     end
 
     test "it should drop the highest dice" do
