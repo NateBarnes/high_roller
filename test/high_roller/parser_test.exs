@@ -17,12 +17,8 @@ defmodule HighRoller.ParserTest do
       |> stub(:roll, fn 2, 8 ->
            [4, 8]
          end)
-      HighRoller.RandomMock
-      |> stub(:roll, fn 2, 6 ->
-           [2, 4]
-         end)
 
-      assert HighRoller.Parser.parse("2d8+2d6") == 18
+      assert HighRoller.Parser.parse("2d8+2d8") == 24
     end
   end
 end
