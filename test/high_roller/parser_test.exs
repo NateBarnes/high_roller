@@ -11,5 +11,14 @@ defmodule HighRoller.ParserTest do
 
       assert HighRoller.Parser.parse("3d20") == 32
     end
+
+    test "it should add specific dice together" do
+      HighRoller.RandomMock
+      |> stub(:roll, fn 2, 8 ->
+           [4, 8]
+         end)
+
+      assert HighRoller.Parser.parse("2d8+2d8") == 24
+    end
   end
 end
