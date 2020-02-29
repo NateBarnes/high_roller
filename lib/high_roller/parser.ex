@@ -43,15 +43,15 @@ defmodule HighRoller.Parser do
     Regex.split(~r/\+|\-/, roll_string, include_captures: true)
   end
 
-  def resolve_integers([]), do: []
-  def resolve_integers([chunk | remaining]) when is_bitstring(chunk) do
+  defp resolve_integers([]), do: []
+  defp resolve_integers([chunk | remaining]) when is_bitstring(chunk) do
     case Integer.parse(chunk) do
       {result, ""} -> [result | resolve_integers(remaining)]
       {_, _} -> [chunk | resolve_integers(remaining)]
       :error -> [chunk | resolve_integers(remaining)]
     end
   end
-  def resolve_integers([chunk | remaining]), do: [chunk | resolve_integers(remaining)]
+  defp resolve_integers([chunk | remaining]), do: [chunk | resolve_integers(remaining)]
 
   defp combine([first_number, "+", second_number | remaining]), do: combine([first_number + second_number | remaining])
   defp combine([first_number, "-", second_number | remaining]), do: combine([first_number - second_number | remaining])
