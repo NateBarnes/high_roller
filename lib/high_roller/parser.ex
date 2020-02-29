@@ -14,9 +14,9 @@ defmodule HighRoller.Parser do
   """
   def parse(roll_string) do
     roll_string
-    |> List.wrap()
     |> parse_operators
     |> roll_dice_chunks()
+    |> resolve_integers()
     |> combine()
     |> Enum.sum()
   end
@@ -39,10 +39,21 @@ defmodule HighRoller.Parser do
     Enum.sum(HighRoller.roll_with_options(num_of_dice, sides))
   end
 
-  defp parse_operators([roll_string | _remaining]) do
-    Regex.split(~r/\+/, roll_string, include_captures: true)
+  defp parse_operators(roll_string) do
+    Regex.split(~r/\+|\-/, roll_string, include_captures: true)
   end
 
+  def resolve_integers([]), do: []
+  def resolve_integers([chunk | remaining]) when is_bitstring(chunk) do
+    case Integer.parse(chunk) do
+      {result, ""} -> [result | resolve_integers(remaining)]
+      {_, _} -> [chunk | resolve_integers(remaining)]
+      :error -> [chunk | resolve_integers(remaining)]
+    end
+  end
+  def resolve_integers([chunk | remaining]), do: [chunk | resolve_integers(remaining)]
+
   defp combine([first_number, "+", second_number | remaining]), do: combine([first_number + second_number | remaining])
+  defp combine([first_number, "-", second_number | remaining]), do: combine([first_number - second_number | remaining])
   defp combine(chunks), do: chunks
 end

@@ -20,5 +20,23 @@ defmodule HighRoller.ParserTest do
 
       assert HighRoller.Parser.parse("2d8+2d8") == 24
     end
+
+    test "it should also add integers to the dice rolls" do
+      HighRoller.RandomMock
+      |> stub(:roll, fn 2, 8 ->
+           [4, 8]
+         end)
+
+      assert HighRoller.Parser.parse("2d8+3") == 15
+    end
+
+    test "it should also subtract integers from the dice rolls" do
+      HighRoller.RandomMock
+      |> stub(:roll, fn 2, 8 ->
+           [4, 8]
+         end)
+
+      assert HighRoller.Parser.parse("2d8-3") == 9
+    end
   end
 end
