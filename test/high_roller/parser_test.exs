@@ -38,5 +38,14 @@ defmodule HighRoller.ParserTest do
 
       assert HighRoller.Parser.parse("2d8-3") == 9
     end
+
+    test "it should also work with many combinations of dice and integers" do
+      HighRoller.RandomMock
+      |> stub(:roll, fn 2, 8 ->
+           [4, 8]
+         end)
+
+      assert HighRoller.Parser.parse("2d8+5+2d8-3") == 26
+    end
   end
 end
