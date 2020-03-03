@@ -16,6 +16,7 @@ defmodule HighRoller do
   """
   def roll_with_options(num_of_dice, sides, options \\ {})
   def roll_with_options(num_of_dice, sides, options) do
+    #require IEx; IEx.pry
     num_of_dice
     |> @random_generator.roll(sides)
     |> subset(options)

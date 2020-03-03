@@ -31,12 +31,23 @@ defmodule HighRoller.Parser do
   end
 
   defp parse_single_roll(roll_string) do
-    [num_of_dice, sides] = String.split(roll_string, "d")
+    [num_of_dice, back_half] = String.split(roll_string, "d", parts: 2)
+    [sides, options] = parse_options(back_half)
 
     {num_of_dice, _} = Integer.parse(num_of_dice)
     {sides, _} = Integer.parse(sides)
 
-    Enum.sum(HighRoller.roll_with_options(num_of_dice, sides))
+    Enum.sum(HighRoller.roll_with_options(num_of_dice, sides, options))
+  end
+
+  defp parse_options(back_half) do
+    if String.match?(back_half, ~r/kh|kl|k|dh|dl|d/) do
+      [sides, option_name, option_number] = String.split(back_half, ~r/kh|kl|k|dh|dl|d/, include_captures: true)
+      {actual_number, _} = Integer.parse(option_number)
+      [sides, [{String.to_atom(option_name), actual_number}]]
+    else
+      [back_half, {}]
+    end
   end
 
   defp parse_operators(roll_string) do

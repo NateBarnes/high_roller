@@ -12,6 +12,24 @@ defmodule HighRoller.ParserTest do
       assert HighRoller.Parser.parse("3d20") == 32
     end
 
+    test "it should pass through roll options" do
+      HighRoller.RandomMock
+      |> stub(:roll, fn 2, 20 ->
+           [17, 4]
+         end)
+
+      assert HighRoller.Parser.parse("2d20kh1") == 17
+    end
+
+    test "it shouldn't get confused by drop options" do
+      HighRoller.RandomMock
+      |> stub(:roll, fn 2, 20 ->
+           [17, 4]
+         end)
+
+      assert HighRoller.Parser.parse("2d20d1") == 17
+    end
+
     test "it should add specific dice together" do
       HighRoller.RandomMock
       |> stub(:roll, fn 2, 8 ->
@@ -37,6 +55,15 @@ defmodule HighRoller.ParserTest do
          end)
 
       assert HighRoller.Parser.parse("2d8-3") == 9
+    end
+
+    test "it should also work with many combinations of dice and integers" do
+      HighRoller.RandomMock
+      |> stub(:roll, fn 2, 8 ->
+           [4, 8]
+         end)
+
+      assert HighRoller.Parser.parse("2d8+5+2d8-3") == 26
     end
   end
 end
