@@ -41,7 +41,7 @@ defmodule HighRoller.Parser do
   end
 
   defp parse_options(back_half) do
-    if(String.match?(back_half, ~r/kh|kl|k|dh|dl|d/)) do
+    if String.match?(back_half, ~r/kh|kl|k|dh|dl|d/) do
       [sides, option_name, option_number] = String.split(back_half, ~r/kh|kl|k|dh|dl|d/, include_captures: true)
       {actual_number, _} = Integer.parse(option_number)
       [sides, [{String.to_atom(option_name), actual_number}]]
