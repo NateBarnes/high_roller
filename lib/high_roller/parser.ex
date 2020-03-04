@@ -40,14 +40,11 @@ defmodule HighRoller.Parser do
     Enum.sum(HighRoller.roll_with_options(num_of_dice, sides, options))
   end
 
-  defp parse_options(back_half) do
-    if String.match?(back_half, ~r/kh|kl|k|dh|dl|d/) do
-      [sides, option_name, option_number] = String.split(back_half, ~r/kh|kl|k|dh|dl|d/, include_captures: true)
-      {actual_number, _} = Integer.parse(option_number)
-      [sides, [{String.to_atom(option_name), actual_number}]]
-    else
-      [back_half, {}]
-    end
+  defp parse_options(back_half) when is_bitstring(back_half), do: parse_options(String.split(back_half, ~r/kh|kl|k|dh|dl|d/, include_captures: true))
+  defp parse_options([sides_string]), do: [sides_string, {}]
+  defp parse_options([sides_string, option_name, option_number]) do
+    {actual_number, _} = Integer.parse(option_number)
+    [sides_string, [{String.to_atom(option_name), actual_number}]]
   end
 
   defp parse_operators(roll_string) do
