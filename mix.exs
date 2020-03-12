@@ -35,7 +35,7 @@ defmodule HighRoller.MixProject do
       licenses: ["MIT"],
       links: %{
         "GitHub" => "https://github.com/NateBarnes/high_roller",
-        "Docs" => "https://hexdocs.pm/high_roller/0.1.0"
+        "Docs" => "https://hexdocs.pm/high_roller/0.3.0"
       }
     ]
   end
