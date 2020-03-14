@@ -3,7 +3,7 @@ defmodule HighRoller do
   Documentation for main HighRoller module
   """
 
-  @random_generator Application.get_env(:high_roller, :random_generator)
+  @random_generator Application.get_env(:high_roller, :random_generator) || HighRoller.Dice
 
   @doc """
   Rolls dice via a method while allowing options.
