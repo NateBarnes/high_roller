@@ -65,5 +65,9 @@ defmodule HighRoller.ParserTest do
 
       assert HighRoller.Parser.parse("2d8+5+2d8-3") == 26
     end
+
+    test "it should fail gracefully" do
+      assert HighRoller.Parser.parse("invalid") == :error
+    end
   end
 end

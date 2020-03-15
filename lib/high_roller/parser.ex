@@ -13,12 +13,16 @@ defmodule HighRoller.Parser do
 
   """
   def parse(roll_string) do
-    roll_string
-    |> parse_operators
-    |> roll_dice_chunks()
-    |> resolve_integers()
-    |> combine()
-    |> Enum.sum()
+    try do
+      roll_string
+      |> parse_operators
+      |> roll_dice_chunks()
+      |> resolve_integers()
+      |> combine()
+      |> Enum.sum()
+    rescue
+      ArithmeticError -> :error
+    end
   end
 
   defp roll_dice_chunks([]), do: []
