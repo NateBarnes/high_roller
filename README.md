@@ -9,7 +9,7 @@ The package can be installed by adding `high_roller` to your list of dependencie
 ```elixir
 def deps do
   [
-    {:high_roller, "~> 0.3.2"}
+    {:high_roller, "~> 0.3.3"}
   ]
 end
 ```
