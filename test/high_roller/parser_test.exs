@@ -70,4 +70,15 @@ defmodule HighRoller.ParserTest do
       assert HighRoller.Parser.parse("invalid") == :error
     end
   end
+
+  describe "when returning the full result of a parse" do
+    test "it should return the results alongside the roll" do
+      HighRoller.RandomMock
+      |> stub(:roll, fn 2, 8 ->
+           [4, 8]
+         end)
+
+      assert HighRoller.Parser.parse_with_results("2d8+5") == %{total: 17, full_results: [[4, 8], :+, 5]}
+    end
+  end
 end
