@@ -13,16 +13,28 @@ defmodule HighRoller.Parser do
 
   """
   def parse(roll_string) do
+    case parse_with_results(roll_string) do
+      %{total: total} -> total
+      :error -> :error
+    end
+  end
+
+  def parse_with_results(roll_string) do
     try do
       roll_string
       |> parse_operators
       |> roll_dice_chunks()
       |> resolve_integers()
-      |> combine()
-      |> Enum.sum()
+      |> create_result_map()
     rescue
       ArithmeticError -> :error
     end
+  end
+
+  def output_current(current) do
+    IO.puts(IO.inspect(current))
+
+    current
   end
 
   defp roll_dice_chunks([]), do: []
@@ -41,7 +53,7 @@ defmodule HighRoller.Parser do
     {num_of_dice, _} = Integer.parse(num_of_dice)
     {sides, _} = Integer.parse(sides)
 
-    Enum.sum(HighRoller.roll_with_options(num_of_dice, sides, options))
+    HighRoller.roll_with_options(num_of_dice, sides, options)
   end
 
   defp parse_options(back_half) when is_bitstring(back_half), do: parse_options(String.split(back_half, ~r/kh|kl|k|dh|dl|d/, include_captures: true))
@@ -64,6 +76,21 @@ defmodule HighRoller.Parser do
     end
   end
   defp resolve_integers([chunk | remaining]), do: [chunk | resolve_integers(remaining)]
+
+  defp resolve_roll_groups([]), do: []
+  defp resolve_roll_groups([chunk | remaining]) when is_list(chunk) do
+    [Enum.sum(chunk) | resolve_roll_groups(remaining)]
+  end
+  defp resolve_roll_groups([chunk | remaining]), do: [chunk | resolve_roll_groups(remaining)]
+
+  defp create_result_map(chunks) do
+    total = chunks
+    |> resolve_roll_groups()
+    |> combine()
+    |> Enum.sum()
+
+    %{total: total, full_results: chunks}
+  end
 
   defp combine([first_number, "+", second_number | remaining]), do: combine([first_number + second_number | remaining])
   defp combine([first_number, "-", second_number | remaining]), do: combine([first_number - second_number | remaining])

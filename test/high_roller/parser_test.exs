@@ -78,7 +78,7 @@ defmodule HighRoller.ParserTest do
            [4, 8]
          end)
 
-      assert HighRoller.Parser.parse_with_results("2d8+5") == %{total: 17, full_results: [[4, 8], :+, 5]}
+      assert HighRoller.Parser.parse_with_results("2d8+5") == %{total: 17, full_results: [[4, 8], "+", 5]}
     end
   end
 end
