@@ -31,12 +31,6 @@ defmodule HighRoller.Parser do
     end
   end
 
-  def output_current(current) do
-    IO.puts(IO.inspect(current))
-
-    current
-  end
-
   defp roll_dice_chunks([]), do: []
   defp roll_dice_chunks([roll_string | remaining]) do
     if String.match?(roll_string, ~r/[0-9]+d[0-9]+/) do
