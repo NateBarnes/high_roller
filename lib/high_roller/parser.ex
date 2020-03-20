@@ -4,7 +4,7 @@ defmodule HighRoller.Parser do
   """
 
   @doc """
-  Parses a roll string into results.
+  Parses a roll string into a final result
 
   ## Examples
 
@@ -19,6 +19,15 @@ defmodule HighRoller.Parser do
     end
   end
 
+  @doc """
+  Parses a roll string and returns both the final result and the results of each of the rolls
+
+  ## Examples
+
+      iex> HighRoller.Parser.parse("3d1+1")
+      {total: 4, full_results: [[1, 1, 1], "+", 1]}
+
+  """
   def parse_with_results(roll_string) do
     try do
       roll_string
