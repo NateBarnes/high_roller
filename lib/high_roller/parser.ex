@@ -31,6 +31,7 @@ defmodule HighRoller.Parser do
   def parse_with_results(roll_string) do
     try do
       roll_string
+      |> String.replace(" ", "")
       |> parse_operators
       |> roll_dice_chunks()
       |> resolve_integers()

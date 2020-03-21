@@ -4,7 +4,7 @@ defmodule HighRoller.MixProject do
   def project do
     [
       app: :high_roller,
-      version: "0.4.0",
+      version: "0.4.1",
       elixir: "~> 1.8",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
@@ -35,7 +35,7 @@ defmodule HighRoller.MixProject do
       licenses: ["MIT"],
       links: %{
         "GitHub" => "https://github.com/NateBarnes/high_roller",
-        "Docs" => "https://hexdocs.pm/high_roller/0.4.0"
+        "Docs" => "https://hexdocs.pm/high_roller/0.4.1"
       }
     ]
   end
