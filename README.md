@@ -1,4 +1,4 @@
-# HighRoller [![Build Status](https://travis-ci.org/NateBarnes/high_roller.svg?branch=master)](https://travis-ci.org/NateBarnes/high_roller) [![Hex Version](https://img.shields.io/hexpm/v/high_roller.svg)](https://hex.pm/packages/high_roller) [![Coverage Status](https://coveralls.io/repos/github/NateBarnes/high_roller/badge.svg?branch=test-coverage)](https://coveralls.io/github/NateBarnes/high_roller?branch=test-coverage)
+# HighRoller [![Build Status](https://travis-ci.org/NateBarnes/high_roller.svg?branch=master)](https://travis-ci.org/NateBarnes/high_roller) [![Hex Version](https://img.shields.io/hexpm/v/high_roller.svg)](https://hex.pm/packages/high_roller) [![Coverage Status](https://coveralls.io/repos/github/NateBarnes/high_roller/badge.svg)](https://coveralls.io/github/NateBarnes/high_roller)
 
 Simple dice roller built in Elixir
 
