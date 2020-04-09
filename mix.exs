@@ -10,6 +10,8 @@ defmodule HighRoller.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [coveralls: :test],
       description: "A Dice Roller"
     ]
   end
@@ -26,7 +28,8 @@ defmodule HighRoller.MixProject do
     [
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:credo, "~> 1.2", only: [:dev, :test], runtime: false},
-      {:mox, "~> 0.5", only: :test}
+      {:mox, "~> 0.5", only: :test},
+      {:excoveralls, "~> 0.12.3", only: :test}
     ]
   end
 
